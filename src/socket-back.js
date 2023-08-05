@@ -10,10 +10,17 @@ io.on("connection", (socket) => {
   })
 
   socket.on("add_doc", async (documentName) => {
-    const result = await addDocument(documentName);
+    const documentExists = (await findDocument(documentName)) !== null;
 
-    if (result.acknowledged)
-      io.emit("add_document_interface", documentName);
+    if (documentExists) {
+      socket.emit("document_exists", documentName);
+    } else {
+      const result = await addDocument(documentName);
+  
+      if (result.acknowledged)
+        io.emit("add_document_interface", documentName);
+    }
+
   })
 
   socket.on("select_document", async (documentName, returnText) => {
