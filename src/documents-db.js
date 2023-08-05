@@ -36,4 +36,12 @@ function getDocuments() {
     return documents;
 }
 
-export { findDocument, updateDocument, getDocuments, addDocument };
+function deleteDocument(documentName) {
+    const result = documentsCollection.deleteOne({
+        name: documentName
+    })
+
+    return result;
+}
+
+export { findDocument, updateDocument, getDocuments, addDocument, deleteDocument };

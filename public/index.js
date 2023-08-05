@@ -17,10 +17,17 @@ function insertDocumentLink(documentName) {
         <a 
             href="document.html?name=${documentName}" 
             class="list-group-item list-group-item-action"
+            id="doc-${documentName}"
         >
             ${documentName}
         </a>
     `;
 }
 
-export { insertDocumentLink };
+function removeDocumentLink(documentName) {
+    const document = document.getElementById(`doc-${documentName}`);
+    
+    documentList.removeChild(document);
+}
+
+export { insertDocumentLink, removeDocumentLink };

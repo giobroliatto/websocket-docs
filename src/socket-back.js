@@ -1,4 +1,4 @@
-import { addDocument, findDocument, getDocuments, updateDocument } from "./documents-db.js";
+import { addDocument, deleteDocument, findDocument, getDocuments, updateDocument } from "./documents-db.js";
 import io from "./server.js";
 
 io.on("connection", (socket) => {
@@ -44,5 +44,13 @@ io.on("connection", (socket) => {
     }
 
   });
+
+  socket.on("delete_document", async documentName => {
+    const result = await deleteDocument(documentName);
+
+    if (result.deletedCount)
+      io.emit("delete_document_success", documentName);
+    
+  })
 
 });
