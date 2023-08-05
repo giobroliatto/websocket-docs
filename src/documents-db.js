@@ -21,5 +21,10 @@ function updateDocument(documentName, documentText) {
     return update;
 }
 
-export { findDocument };
-export { updateDocument };
+function getDocuments() {
+    const documents = documentsCollection.find().toArray();
+    
+    return documents;
+}
+
+export { findDocument, updateDocument, getDocuments };
