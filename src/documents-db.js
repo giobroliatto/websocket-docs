@@ -21,10 +21,19 @@ function updateDocument(documentName, documentText) {
     return update;
 }
 
+function addDocument(documentName) {
+    const result = documentsCollection.insertOne({
+        name: documentName,
+        text: ""
+    })
+
+    return result;
+}
+
 function getDocuments() {
     const documents = documentsCollection.find().toArray();
     
     return documents;
 }
 
-export { findDocument, updateDocument, getDocuments };
+export { findDocument, updateDocument, getDocuments, addDocument };
