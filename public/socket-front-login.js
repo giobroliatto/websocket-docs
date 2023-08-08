@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io('http://localhost:3000');
 
 function emitAuthenticateUser(data) {
   socket.emit("authenticate_user", data);
