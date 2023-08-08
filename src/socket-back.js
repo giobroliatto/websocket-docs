@@ -1,56 +1,8 @@
-import { addDocument, deleteDocument, findDocument, getDocuments, updateDocument } from "./documents-db.js";
+import registerEventsDocument from "./registerEvents/registerEventsDocument.js";
+import registerEventsStart from "./registerEvents/registerEventsStart.js";
 import io from "./server.js";
 
 io.on("connection", (socket) => {
-
-  socket.on("get_documents", async (returnDocuments) => {
-    const documents = await getDocuments();
-
-    returnDocuments(documents)
-  })
-
-  socket.on("add_doc", async (documentName) => {
-    const documentExists = (await findDocument(documentName)) !== null;
-
-    if (documentExists) {
-      socket.emit("document_exists", documentName);
-    } else {
-      const result = await addDocument(documentName);
-  
-      if (result.acknowledged)
-        io.emit("add_document_interface", documentName);
-    }
-
-  })
-
-  socket.on("select_document", async (documentName, returnText) => {
-    socket.join(documentName);
-
-    const document = await findDocument(documentName);
-
-    console.log(document);
-
-    if (document) 
-      returnText(document.text);
-    
-  })
-
-  socket.on("text_editor", async (text, documentName) => {
-    const update = await updateDocument(documentName, text);
-
-    console.log(update);
-    if (update.modifiedCount) {
-      socket.to(documentName).emit("text_editor_clients", text);
-    }
-
-  });
-
-  socket.on("delete_document", async documentName => {
-    const result = await deleteDocument(documentName);
-
-    if (result.deletedCount)
-      io.emit("delete_document_success", documentName);
-    
-  })
-
+  registerEventsDocument(socket, io);
+  registerEventsStart(socket, io);
 });
