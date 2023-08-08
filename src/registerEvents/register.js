@@ -1,7 +1,7 @@
 import { findUser, registerUser } from "../users-db.js";
 
 function registerEventsRegister(socket, io) {
-  socket.on("register-user", async data => {
+  socket.on("register_user", async data => {
     const user = await findUser(data.user);
 
     if (user === null) {
