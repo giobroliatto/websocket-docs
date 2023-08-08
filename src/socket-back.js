@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import registerEventsDocument from "./registerEvents/document.js";
 import registerEventsLogin from "./registerEvents/login.js";
 import registerEventsRegister from "./registerEvents/register.js";
