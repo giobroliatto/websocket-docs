@@ -1,4 +1,4 @@
-import { emitRegisterUser } from "../socket-front-register.js";
+import { emitRegisterUser } from "./socket-front-register.js";
 
 const form = document.getElementById("form-register");
 

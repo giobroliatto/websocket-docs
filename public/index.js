@@ -1,4 +1,9 @@
 import { emitAddDoc } from "./socket-front-index.js"
+import { getCookie } from "./utils/cookies.js";
+
+const tokenJwt = getCookie("tokenJwt")
+
+console.log(tokenJwt)
 
 const documentList = document.getElementById("document-list");
 const form = document.getElementById("form-add-doc");
@@ -15,7 +20,7 @@ form.addEventListener("submit", event => {
 function insertDocumentLink(documentName) {
     documentList.innerHTML += `
         <a 
-            href="document.html?name=${documentName}" 
+            href="./document/document.html?name=${documentName}" 
             class="list-group-item list-group-item-action"
             id="doc-${documentName}"
         >
