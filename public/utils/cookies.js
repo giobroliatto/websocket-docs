@@ -9,4 +9,8 @@ function getCookie(key) {
         ?.split("=")[1];
 }
 
-export { setCookie, getCookie };
+function removeCookie(key) {
+    document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00`
+}
+
+export { setCookie, getCookie, removeCookie };

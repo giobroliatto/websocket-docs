@@ -1,13 +1,18 @@
 import { emitAddDoc } from "./socket-front-index.js"
-import { getCookie } from "./utils/cookies.js";
+import { getCookie, removeCookie } from "./utils/cookies.js";
 
-const tokenJwt = getCookie("tokenJwt")
-
-console.log(tokenJwt)
+const tokenJwt = getCookie("tokenJwt");
 
 const documentList = document.getElementById("document-list");
 const form = document.getElementById("form-add-doc");
 const inputDoc = document.getElementById("input-document");
+const logoutButton = document.getElementById("logout-button");
+
+logoutButton.addEventListener("click", () => {
+    removeCookie("tokenJwt");
+    alert("See you soon!");
+    window.location.href = "/login/index.html"
+})
 
 form.addEventListener("submit", event => {
     event.preventDefault();
