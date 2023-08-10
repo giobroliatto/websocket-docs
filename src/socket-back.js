@@ -8,11 +8,16 @@ import registerEventsStart from "./registerEvents/start.js";
 import io from "./server.js";
 import authorizeUser from "./middlewares/authorize-user.js"
 
-io.use(authorizeUser);
+const nspUsers = io.of("/users");
 
-io.on("connection", (socket) => {
+nspUsers.use(authorizeUser);
+
+nspUsers.on("connection", socket => {
+  registerEventsStart(socket, nspUsers);
+  registerEventsDocument(socket, nspUsers);
+})
+
+io.of("/").on("connection", socket => {
   registerEventsRegister(socket, io);
   registerEventsLogin(socket, io);
-  registerEventsStart(socket, io);
-  registerEventsDocument(socket, io);
 });
