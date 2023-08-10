@@ -14,15 +14,9 @@ const publicDirectory = path.join(currentRoute, "../..", "public");
 app.use(express.static(publicDirectory));
 
 const httpServer = http.createServer(app);
-const httpServer2 = http.createServer(app);
 
 httpServer.listen(port, () => console.log(`servidor escutando na porta ${port}`));
-httpServer2.listen(5000, () => console.log(`servidor escutando na porta 5000`));
 
-const io = new Server(httpServer, {
-    cors: {
-      origin: "http://localhost:5000",
-    },
-});
+const io = new Server(httpServer);
 
 export default io;

@@ -1,6 +1,6 @@
 import { setCookie } from "../utils/cookies.js";
 
-const socket = io('http://localhost:3000');
+const socket = io();
 
 function emitAuthenticateUser(data) {
   socket.emit("authenticate_user", data);

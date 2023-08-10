@@ -1,6 +1,6 @@
 import { alertAndRedirect, updateTextEditor } from "./document.js";
 
-const socket = io('http://localhost:3000');
+const socket = io();
 
 function selectDocument(name) {
   socket.emit("select_document", name, text => {
