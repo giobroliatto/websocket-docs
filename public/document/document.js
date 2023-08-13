@@ -6,6 +6,7 @@ const documentName = params.get("name");
 const textEditor = document.getElementById("text-editor");
 const documentTitle = document.getElementById("document-title");
 const deleteButton = document.getElementById("delete-document");
+const usersConnectedList = document.getElementById("users-connected")
 
 documentTitle.textContent = documentName || "Documento sem título"
 
@@ -13,6 +14,15 @@ function handleAuthorizationSuccess(payloadToken) {
   selectDocument({ documentName, username: payloadToken.user });
 }
 
+function updateUsersInterface(usersOnDocument) {
+  usersConnectedList.innerHTML = "";
+
+  usersOnDocument.forEach(user => {
+    usersConnectedList.innerHTML += `
+      <li class="list-group-item">${user}</li>
+    `
+  })
+}
 
 textEditor.addEventListener("keyup", () => {
   emitTextEditor(textEditor.value, documentName);
@@ -33,4 +43,4 @@ function alertAndRedirect(name) {
   }
 }
 
-export { updateTextEditor, alertAndRedirect, handleAuthorizationSuccess };
+export { updateTextEditor, alertAndRedirect, handleAuthorizationSuccess, updateUsersInterface };

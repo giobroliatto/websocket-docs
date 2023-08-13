@@ -1,5 +1,5 @@
 import { getCookie } from "../utils/cookies.js"
-import { alertAndRedirect, handleAuthorizationSuccess, updateTextEditor } from "./document.js";
+import { alertAndRedirect, handleAuthorizationSuccess, updateTextEditor, updateUsersInterface } from "./document.js";
 
 const socket = io("/users", {
   auth: {
@@ -19,6 +19,8 @@ function selectDocument(entryData) {
     updateTextEditor(text);
   });
 }
+
+socket.on("users_on_document", updateUsersInterface)
 
 function emitTextEditor(text, documentName) {
   socket.emit("text_editor", text, documentName);

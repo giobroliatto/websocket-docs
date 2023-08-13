@@ -1,16 +1,23 @@
 import { deleteDocument, findDocument, updateDocument } from "../documents-db.js";
+import { addConnection, getUsersOnDocument } from "../utils/document-connections.js";
 
 function registerEventsDocument(socket, io) {
   socket.on(
     "select_document", 
     async ({ documentName, username }, returnText) => {
-    socket.join(documentName);
-    console.log(username);
-
     const document = await findDocument(documentName);
 
-    if (document) 
+    if (document) {
+      socket.join(documentName);
+
+      addConnection({ documentName, username });
+
+      const usersOnDocument = getUsersOnDocument(documentName);
+
+      io.to(documentName).emit("users_on_document", usersOnDocument) // io.to emite para todos os usuários, inclusive o que está conectado
+
       returnText(document.text);
+    } 
     
   })
 
