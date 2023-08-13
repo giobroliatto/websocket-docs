@@ -9,7 +9,10 @@ const deleteButton = document.getElementById("delete-document");
 
 documentTitle.textContent = documentName || "Documento sem título"
 
-selectDocument(documentName);
+function handleAuthorizationSuccess(payloadToken) {
+  selectDocument({ documentName, username: payloadToken.user });
+}
+
 
 textEditor.addEventListener("keyup", () => {
   emitTextEditor(textEditor.value, documentName);
@@ -30,4 +33,4 @@ function alertAndRedirect(name) {
   }
 }
 
-export { updateTextEditor, alertAndRedirect };
+export { updateTextEditor, alertAndRedirect, handleAuthorizationSuccess };
