@@ -6,7 +6,7 @@ const documentName = params.get("name");
 const textEditor = document.getElementById("text-editor");
 const documentTitle = document.getElementById("document-title");
 const deleteButton = document.getElementById("delete-document");
-const usersConnectedList = document.getElementById("users-connected")
+const usersConnectedList = document.getElementById("users-connected");
 
 documentTitle.textContent = documentName || "Documento sem título"
 

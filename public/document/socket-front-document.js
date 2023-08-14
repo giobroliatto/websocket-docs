@@ -20,7 +20,12 @@ function selectDocument(entryData) {
   });
 }
 
-socket.on("users_on_document", updateUsersInterface)
+socket.on("user_already_on_document", () => {
+  alert("Document already open in another page");
+  window.location.href = "/";
+})
+
+socket.on("users_on_document", updateUsersInterface);
 
 function emitTextEditor(text, documentName) {
   socket.emit("text_editor", text, documentName);
