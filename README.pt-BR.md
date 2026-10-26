@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/icon.svg" width="72" alt="Logo do WebSocket Docs" />
+
 # WebSocket Docs
 
 **Editor de documentos colaborativo em tempo real, com Socket.IO e autenticação JWT.**
