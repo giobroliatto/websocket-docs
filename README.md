@@ -12,6 +12,8 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?logo=jsonwebtokens&logoColor=white)
 
+[![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 </div>
 
 **English** · [Português](README.pt-BR.md)
@@ -89,6 +91,12 @@ src/
 └── users-db.js           # Users collection access
 public/                   # Login, sign-up, list and editor pages
 ```
+
+---
+
+## License
+
+[MIT](LICENSE)
 
 ---
 
